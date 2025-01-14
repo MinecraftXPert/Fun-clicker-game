@@ -1,5 +1,7 @@
+import Clicker from "./components/Clicker";
+
 export default function App() {
   return (
-    <h1>Hello world test</h1>
-  )
+    <Clicker />
+  );
 }
