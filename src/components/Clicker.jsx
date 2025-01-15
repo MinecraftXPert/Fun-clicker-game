@@ -1,23 +1,34 @@
 import React from 'react'
+import Upgrades from './Upgrades';
+import data from '../upgrades'
 
 export default function Clicker() {
 
-  const [counter, setCounter] = React.useState(0)
+  const upgradeElements = data.map(upgrade => {
+    return <Upgrades 
+      key={upgrade.id}
+      upgrade={upgrade}
+    />
+  })
+
+  const [clicks, setClicks] = React.useState(0)
 
   function increaseCount() {
-    setCounter(prevCount => {
+    setClicks(prevCount => {
       return prevCount = prevCount + 1;
     })
+
+    const showClicks = document.querySelector(".num-clicks");
+
+    showClicks.classList.add("show");
   }
 
   return (
     <div className="clicker-container">
       <button onClick={increaseCount} className="clicker-btn">Click me</button>
-      <p>Number of clicks: <span id="num-clicks">{counter}</span></p>
+      <p className="num-clicks">Number of clicks: <span id="num-clicks">{clicks}</span></p>
       <div className='upgrades'>
-        <button>DVD</button>
-        <button>Sometihng else</button>
-        <button>Lorem Ipsum</button>
+        {upgradeElements}
       </div>
     </div>
   );
